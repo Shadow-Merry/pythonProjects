@@ -12,6 +12,21 @@ try:
     new = datetime.date.today()
     date = datetime.datetime.strptime(input("Enter the Date: "), '%Y-%m-%d')
     inputDate = date.date()
+    if new.month == 4 or new == 6 or new == 9 or new == 11:
+        monthDay = 30
+    elif new.month == 2:
+        if new.year % 100 == 0:
+            if new.year % 400 == 0:
+                monthDay = 29
+            else:
+                monthDay = 28
+        else:
+            if new.year % 4 == 0:
+                monthDay = 29
+            else:
+                monthDay = 28
+    else:
+        monthDay = 31
     if inputDate.year < new.year:
         print(f"Enter the Year Correctly You Enter {inputDate.year}")
         year = 0
@@ -28,7 +43,7 @@ try:
         month = inputDate.month - new.month
         month = year + month
     if inputDate.day < new.day:
-        date = 30 - new.day + inputDate.day 
+        date = monthDay - new.day + inputDate.day 
     elif inputDate.day == new.day:
         date = 0
     else:
